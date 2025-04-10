@@ -1,0 +1,147 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedido de Livro</title>
+  <style>
+	  	:root {
+	  --green: #2ecc71;
+	  --red: #e74c3c;
+	  --blue: #3498db;
+	  --yellow: #f1c40f;
+	  --purple: #8e44ad;
+	  --turquoise: #1abc9c;
+	}
+    body {
+      font-family: Candara, sans-serif;
+      max-width: 600px;
+	  font-size: 1.5rem;
+      margin: auto;
+      padding: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+	  background: #2ecc71;
+	  color: #fff;
+	}
+	
+	/* Estilo base para todos os botões */
+	button {
+	  box-sizing: border-box;
+	  appearance: none;
+	  border: 2px solid var(--blue);
+	  border-radius: 0.6em;
+	  cursor: pointer;
+  	  display: block;
+  	  margin: 20px auto; /* centraliza horizontalmente */
+	  justify-content: center;
+	  align-items: center;
+      font-family: Candara, sans-serif;
+	  font-size: 1.2rem;
+	  font-weight: 530; 
+	  line-height: 1;
+	  padding: 1em 2em;
+	  text-align: center;
+	  text-transform: uppercase;
+	  font-family: 'Montserrat', sans-serif;
+	  background-color: transparent;
+	  margin-top: 20px;
+	  transition: all 150ms ease-in-out;
+	}
+
+	/* Estilo específico do botão third */
+	.third {
+      border-color: var(--green);
+	  color: black;
+      text-transform: none;
+	  box-shadow: 0 0 40px 40px var(--green) inset, 0 0 0 0 var(--green);
+	}
+
+	.third:hover {
+	  box-shadow: 0 0 4px 0 var(--green) inset, 0 0 4px 1px var(--green);
+	  color: black;      
+	  font-size: 1.25rem;
+	}
+
+	.third:active {
+	  transform: translateY(2px);
+	  box-shadow: 0 2px 0 #2ecc713;
+	}
+    
+  </style>
+</head>
+<body>
+  <h2>DADOS PARA PEDIR O SEU LIVRO</h2>
+  <form id="pedidoForm">
+    <label>Nome Completo:
+      <input type="text" id="nome" required>
+    </label>
+    <label>CPF:
+      <input type="text" id="cpf" required>
+    </label>
+    <label>Endereço:
+      <input type="text" id="endereco" required>
+    </label>
+    <label>Número:
+      <input type="text" id="numero" required>
+    </label>
+    <label>Bairro, Cidade, Estado e País:
+      <input type="text" id="bairroCidade" required>
+    </label>
+    <label>CEP:
+      <input type="text" id="cep" required>
+    </label>
+    <label>Ponto de Referência:
+      <input type="text" id="referencia">
+    </label>
+    <label>E-mail:
+      <input type="email" id="email" required>
+    </label>
+    <label>Telefone:
+      <input type="tel" id="telefone" required>
+    </label>
+    
+    <p><strong>Pagamento será feito no PIX indicado.</strong><br>
+    Preço fixado em R$ 110,00 com a inclusão do frete.</p>
+
+    <button type="button" class="third" onclick="gerarLinkWhatsApp()">Encomendar via WhatsApp</button>
+  </form>
+
+  <script>
+    function gerarLinkWhatsApp() {
+      const numero = 5511989993251; // Exemplo: 5511999999999
+      const nome = document.getElementById('nome').value;
+      const cpf = document.getElementById('cpf').value;
+      const endereco = document.getElementById('endereco').value;
+      const numeroCasa = document.getElementById('numero').value;
+      const bairroCidade = document.getElementById('bairroCidade').value;
+      const cep = document.getElementById('cep').value;
+      const referencia = document.getElementById('referencia').value;
+      const email = document.getElementById('email').value;
+      const telefone = document.getElementById('telefone').value;
+
+      const mensagem = `Olá, gostaria de encomendar o livro.\n\n*DADOS PESSOAIS*\nNome: ${nome}\nCPF: ${cpf}\n\n*ENDEREÇO*\nEndereço: ${endereco}, Nº ${numeroCasa}\n${bairroCidade}\nCEP: ${cep}\nPonto de Referência: ${referencia}\n\nE-mail: ${email}\nTelefone: ${telefone}\n\nPagamento será feito no PIX.\nValor: R$ 110,00 (frete incluso).`;
+
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
